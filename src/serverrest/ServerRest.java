@@ -35,7 +35,7 @@ public class ServerRest {
             
             // Registra gli handler per gli endpoint
             server.createContext("/api/roulette/paridispari/get", new GetHandler());
-            server.createContext("/api/roulette/paridispari/post, new PostHandler()");
+            server.createContext("/api/roulette/paridispari/post", new PostHandler());
             
             // Endpoint di benvenuto
             server.createContext("/", ServerRest::gestisciBenvenuto);
