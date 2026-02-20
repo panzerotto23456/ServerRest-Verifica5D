@@ -47,19 +47,22 @@ public class GetHandler implements HttpHandler {
             // Validazione parametri
             if (validazioneParametri(parametri)) {
                 inviaErrore(exchange, 400, 
-                    "Parametri mancanti. Necessari: operando1, operando2, operatore");
+                    "Parametri mancanti. Necessari: giocata, numero");
                 return;
             }
             
             // Parsing dei valori
-            String giocata = parametri.toString();
-            //Integer numero = Integer.parseInt(parametri);
+            String giocata = parametri.get("giocata").toString();
+            Integer numero = Integer.parseInt(parametri.get("numero"));
             
             // Esegue la logica di calcolo
-            double risultato = DaFareService.logicaDiCalcolo();
+            Boolean risultato = Service.logicaDiCalcolo(giocata,numero);
             
             // Crea l'oggetto risposta
             Response response = new Response(
+                    giocata,
+                    numero.toString(),
+                    risultato.toString()
             );
             
             // GSON converte automaticamente l'oggetto Java in JSON
@@ -79,7 +82,15 @@ public class GetHandler implements HttpHandler {
     // Validazione dei parametri (da implementare)
     private boolean validazioneParametri(Map<String, String> parametri) {
         
-        return false;
+        Boolean tf;
+        if(parametri.get("giocata")==null || parametri.get("numero")==null){
+            tf=false;
+        }
+        else{
+            tf=true;
+        }
+        return tf;
+        
     }
     
     /**
