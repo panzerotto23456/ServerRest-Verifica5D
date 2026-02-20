@@ -58,16 +58,20 @@ public class PostHandler implements HttpHandler {
                 return;
             }
             
-            if (validazioneParametri(request)) {
-                inviaErrore(exchange, 400, "Operatore mancante o vuoto");
+            if (!validazioneParametri(request)) {
+                inviaErrore(exchange, 400, "numero e giocata mancante o vuoto");
                 return;
             }
             
+            Integer numero = Integer.parseInt(request.getNumero());
             // Chiama la logica di calcolo DA FARE
-           
+           Boolean risultato = Service.logicaDiCalcolo(request.getGiocata(), numero);
             
             // Crea l'oggetto risposta DA FARE
            Response response = new Response(
+                   request.getGiocata(),
+                   request.getNumero(),
+                   risultato.toString()
             );
             
             // GSON converte automaticamente l'oggetto Java in JSON
@@ -87,7 +91,15 @@ public class PostHandler implements HttpHandler {
     // Validazione dei parametri (da implementare)
     private boolean validazioneParametri(Request request) {
         
-        return false;
+        Boolean tf;
+        if(request.getGiocata()==null || request.getNumero()==null){
+            tf=false;
+        }
+        else{
+            tf=true;
+        }
+        return tf;
+        
     }
 
     /**
