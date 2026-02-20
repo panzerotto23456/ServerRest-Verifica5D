@@ -16,16 +16,34 @@ public class Request {
     // Costruttore vuoto necessario per GSON
     public Request() {
     }
-    
-    // Costruttore con parametri  
-   
-    
-    // Getter
-   
-    
-    // Setter
-    
 
-    // ToString
+    public Request(String giocata, String numero) {
+        this.giocata = giocata;
+        this.numero = numero;
+    }
+   
+
+    public String getGiocata() {
+        return giocata;
+    }
+
+    public void setGiocata(String giocata) {
+        this.giocata = giocata;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    @Override
+    public String toString() {
+        return "Request{" + "giocata=" + giocata + ", numero=" + numero + '}';
+    }
+    
+    
     
 }
