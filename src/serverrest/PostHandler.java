@@ -91,8 +91,8 @@ public class PostHandler implements HttpHandler {
     // Validazione dei parametri (da implementare)
     private boolean validazioneParametri(Request request) {
         
-        Boolean tf;
-        if(request.getGiocata()==null || request.getNumero()==null){
+        boolean tf;
+        if(request.getGiocata()==null || request.getNumero()==null || !request.getGiocata().equals("PARI") || !request.getGiocata().equals("DISPARI") || Integer.parseInt(request.getNumero())>36 || Integer.parseInt(request.getNumero())<0){
             tf=false;
         }
         else{

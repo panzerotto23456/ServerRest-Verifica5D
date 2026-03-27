@@ -29,31 +29,24 @@ public class Service {
                 
         Boolean vittoria;
         
-        try {
-            
-            if(("PARI".equals(giocata) && numero!=0 & numero%2 ==0) || ("DISPARI".equals(giocata) && numero!=0 & numero%2 ==1))
+  
+            if(("PARI".equals(giocata) && numero!=0 && numero%2 ==0) || ("DISPARI".equals(giocata) && numero!=0 && numero%2 ==1))
             {
                 vittoria = true;
             }
             else{
                 vittoria = false;
             }
-            
-            
-        } catch (Exception e) {
-            throw new IllegalArgumentException(
-                    "Opzione non valida. Opzione deve essere DA FARE");
-        }
+
         
-        
-        return vittoria; // Placeholder, da sostituire con il risultato della logica di calcolo
+        return vittoria; 
     }
 
     // Metodo di validazione dei parametri (da implementare)
     private static boolean parametriValidi(String giocata, Integer numero)
     {
-        Boolean tf;
-        if(giocata==null || numero==null){
+        boolean tf;
+        if(giocata==null || numero==null || !giocata.equals("PARI") || !giocata.equals("DISPARI") || numero>36 || numero<0){
             tf=false;
         }
         else{

@@ -52,7 +52,7 @@ public class GetHandler implements HttpHandler {
             }
             
             // Parsing dei valori
-            String giocata = parametri.get("giocata").toString();
+            String giocata = parametri.get("giocata");
             Integer numero = Integer.parseInt(parametri.get("numero"));
             
             // Esegue la logica di calcolo
@@ -82,8 +82,9 @@ public class GetHandler implements HttpHandler {
     // Validazione dei parametri (da implementare)
     private boolean validazioneParametri(Map<String, String> parametri) {
         
-        Boolean tf;
-        if(parametri.get("giocata")==null || parametri.get("numero")==null){
+        boolean tf;
+        if(parametri.get("giocata")==null || parametri.get("numero")==null || !parametri.get("giocata").equals("PARI") || !parametri.get("giocata").equals("DISPARI") || Integer.parseInt(parametri.get("numero"))>36 || Integer.parseInt(parametri.get("numero"))<0)
+        {
             tf=false;
         }
         else{
